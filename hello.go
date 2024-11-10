@@ -3,13 +3,17 @@ package main
 
 import "fmt"
 
-const tempEbulicaoAguaK = 373.0
-
 func main() {
 
-	var tempKelvin = tempEbulicaoAguaK
-	var tempCelsius = tempKelvin - 273
-
-	fmt.Printf("Temperatura de ebulição em Kelvin: %g e a temperatura de ebulição em Celsius: %g", tempKelvin, tempCelsius)
+	for i := 1; i <= 100; i++ {
+		if i%3 == 0 && i%5 == 0 {
+		} else if i%3 == 0 {
+			fmt.Println("Pin")
+		} else if i%5 == 0 {
+			fmt.Println("Pan")
+		} else {
+			fmt.Println(i)
+		}
+	}
 
 }
