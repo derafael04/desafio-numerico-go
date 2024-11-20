@@ -1,19 +1,38 @@
-// Projeto conversão de Kelvin para Celsius
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"time"
+)
+
+func ping(c chan string) {
+	for i := 0; ; i++ {
+		c <- "ping"
+	}
+}
+
+func pong(c chan string) {
+	for i := 0; ; i++ {
+		c <- "pong"
+	}
+}
+
+func imprimir(c chan string) {
+	for {
+		msg := <-c
+		fmt.Println(msg)
+		time.Sleep(time.Second * 1)
+	}
+}
 
 func main() {
+	var c chan string = make(chan string)
 
-	for i := 1; i <= 100; i++ {
-		if i%3 == 0 && i%5 == 0 {
-		} else if i%3 == 0 {
-			fmt.Println("Pin")
-		} else if i%5 == 0 {
-			fmt.Println("Pan")
-		} else {
-			fmt.Println(i)
-		}
-	}
+	go ping(c)
+	go imprimir(c)
+	go pong(c)
+
+	var input string
+	fmt.Scanln(&input)
 
 }
